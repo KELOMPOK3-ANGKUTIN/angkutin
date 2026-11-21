@@ -1,0 +1,819 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --navy: #142b49;
+  --blue: #2463eb;
+  --orange: #ff9d35;
+  --light: #f5f7fb;
+  --text: #283548;
+  --muted: #6d7a8c;
+  --white: #ffffff;
+  --border: #e4e9f1;
+  --radius: 18px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 85px;
+}
+
+body {
+  font-family: "DM Sans", Arial, sans-serif;
+  background: var(--white);
+  color: var(--text);
+  line-height: 1.65;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+.btn {
+  cursor: pointer;
+}
+
+/* NAVBAR */
+
+.navbar {
+  min-height: 78px;
+  padding: 15px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 23px;
+  font-weight: 800;
+  color: var(--navy);
+}
+
+.logo {
+  width: 43px;
+  height: 43px;
+  object-fit: contain;
+}
+
+.accent {
+  color: var(--orange);
+}
+
+.navbar nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.navbar nav a:hover {
+  color: var(--blue);
+}
+/* Warna teks tombol Pesan Sekarang saat diarahkan kursor. */
+.navbar nav a.nav-button:hover {
+  color: #000000;
+}
+.navbar nav .nav-button {
+  background: var(--blue);
+  color: white;
+  padding: 11px 18px;
+  border-radius: 9px;
+}
+
+.menu-toggle {
+  display: none;
+  border: 0;
+  background: transparent;
+  color: var(--navy);
+  font-size: 27px;
+}
+
+/* BERANDA / HERO */
+
+.hero {
+  background: var(--light);
+  padding: 76px 7%;
+  display: grid;
+  grid-template-columns: 1fr 0.95fr;
+  gap: 55px;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.eyebrow {
+  display: inline-block;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+.hero h1 {
+  color: var(--navy);
+  font-size: clamp(36px, 4.4vw, 57px);
+  line-height: 1.16;
+  letter-spacing: -1.8px;
+  margin-bottom: 22px;
+}
+
+.hero-content > p,
+.section-heading > p,
+.booking-intro > p {
+  color: var(--muted);
+  font-size: 15px;
+  max-width: 520px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 29px 0;
+}
+
+/* TOMBOL */
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 20px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  transition: transform .2s, background .2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #174ec9;
+}
+
+.btn-outline {
+  border-color: #cbd5e1;
+  color: var(--navy);
+  background: white;
+}
+
+.hero-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  font-size: 12px;
+  color: #536277;
+}
+
+/* FOTO UTAMA */
+
+.hero-image {
+  position: relative;
+  min-width: 0;
+}
+
+.hero-image > img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 24px;
+  display: block;
+  box-shadow: 0 24px 55px #142b491f;
+  background: #e8edf4;
+}
+
+.image-label {
+  position: absolute;
+  left: -20px;
+  bottom: 22px;
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  padding: 16px 20px;
+  border-radius: 13px;
+  background: white;
+  box-shadow: 0 10px 35px #142b4920;
+}
+
+.label-icon {
+  background: #fff1df;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 24px;
+}
+
+.image-label strong,
+.image-label small {
+  display: block;
+}
+
+.image-label strong {
+  color: var(--navy);
+  font-size: 14px;
+}
+
+.image-label small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* BAGIAN LAYANAN DAN ARMADA */
+
+.section {
+  padding: 82px 7%;
+}
+
+.section-heading {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 38px;
+}
+
+.section-heading h2,
+.booking-intro h2,
+.cta h2 {
+  color: var(--navy);
+  font-size: clamp(27px, 3vw, 36px);
+  line-height: 1.25;
+  margin-bottom: 13px;
+  letter-spacing: -.7px;
+}
+
+.section-heading > p {
+  margin: 0 auto;
+}
+
+/* KARTU LAYANAN */
+
+.service-grid,
+.fleet-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.service-card {
+  padding: 27px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: white;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.service-card:hover,
+.vehicle-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 38px #142b4910;
+}
+
+.service-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  background: #edf3ff;
+  border-radius: 13px;
+  font-size: 25px;
+  margin-bottom: 19px;
+}
+
+.service-card h3 {
+  color: var(--navy);
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.service-card p {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* PILIHAN MOBIL */
+
+.fleet {
+  background: var(--light);
+}
+
+.fleet-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+.vehicle-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: white;
+  transition: transform .2s, box-shadow .2s;
+  min-width: 0;
+}
+
+.vehicle-card.selected {
+  border: 2px solid var(--blue);
+  box-shadow: 0 0 0 3px #2463eb16;
+}
+
+.vehicle-card > img {
+  width: 100%;
+  height: 175px;
+  object-fit: cover;
+  display: block;
+  background: #e9edf3;
+}
+
+.vehicle-content {
+  padding: 19px;
+}
+
+.vehicle-content h3 {
+  font-size: 17px;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.vehicle-content .description {
+  min-height: 42px;
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 13px;
+}
+
+.vehicle-price {
+  font-weight: 800;
+  font-size: 19px;
+  color: var(--blue);
+}
+
+.vehicle-price small {
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 11px;
+}
+
+.vehicle-content .capacity {
+  display: block;
+  margin: 8px 0 17px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.choose-btn {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #cdd8ed;
+  border-radius: 9px;
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 700;
+  background: white;
+  width: 100%;
+}
+
+.selected .choose-btn,
+.choose-btn:hover {
+  background: var(--blue);
+  color: white;
+}
+
+/* BAGIAN PEMESANAN */
+
+.booking {
+  display: grid;
+  grid-template-columns: .85fr 1fr;
+  gap: 65px;
+  align-items: start;
+  background: white;
+}
+
+.booking-intro {
+  position: sticky;
+  top: 115px;
+}
+
+.booking-intro h2 {
+  font-size: 39px;
+  margin-bottom: 18px;
+}
+
+.booking-note {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 22px;
+  font-size: 14px;
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.booking-note span {
+  color: #12845b;
+  background: #e5f7ee;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+/* FORMULIR */
+
+.booking-form {
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 15px 45px #142b490b;
+}
+
+.booking-form h3 {
+  font-size: 23px;
+  color: var(--navy);
+  margin-bottom: 23px;
+}
+
+.form-group {
+  margin-bottom: 17px;
+  min-width: 0;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  border: 1px solid #dce3ed;
+  border-radius: 9px;
+  padding: 12px 13px;
+  outline: none;
+  color: var(--text);
+  background: white;
+  font-size: 13px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px #2463eb12;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* RINGKASAN HARGA */
+
+.price-summary {
+  display: flex;
+  flex-direction: column;
+  padding: 19px;
+  margin: 8px 0 20px;
+  border-radius: 12px;
+  background: #f0f5ff;
+  gap: 4px;
+}
+
+.price-summary > span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.price-summary strong {
+  font-size: 29px;
+  color: var(--blue);
+}
+
+.price-summary small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.submit-btn {
+  width: 100%;
+  border: 0;
+}
+
+.form-disclaimer {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* BAGIAN AJAKAN PESAN */
+
+.cta {
+  padding: 65px 7%;
+  background: var(--navy);
+  text-align: center;
+  color: #d7e0ee;
+}
+
+.cta h2 {
+  color: white;
+}
+
+.cta p {
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.btn-light {
+  background: var(--orange);
+  color: var(--navy);
+}
+
+/* FOOTER */
+
+.footer {
+  text-align: center;
+  padding: 32px 7%;
+  background: #0e2038;
+  color: #c2cede;
+}
+
+.footer-brand {
+  justify-content: center;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.footer p {
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.footer small {
+  font-size: 11px;
+  color: #94a5bd;
+}
+
+/* RESPONSIF TABLET */
+
+@media (max-width: 1100px) {
+  .hero {
+    gap: 30px;
+  }
+
+  .fleet-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .vehicle-card > img {
+    height: 220px;
+  }
+}
+
+/* RESPONSIF HP */
+
+@media (max-width: 760px) {
+  .navbar {
+    padding: 12px 5%;
+    min-height: 68px;
+    flex-wrap: wrap;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .navbar nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 0;
+  }
+
+  .navbar nav.open {
+    display: flex;
+  }
+
+  .navbar nav a {
+    padding: 12px 8px;
+  }
+
+  .navbar nav .nav-button {
+    text-align: center;
+    margin-top: 5px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 52px 5%;
+    gap: 38px;
+  }
+
+  .hero h1 {
+    font-size: 39px;
+  }
+
+  .hero-image > img {
+    height: 310px;
+  }
+
+  .image-label {
+    left: 10px;
+    bottom: 12px;
+  }
+
+  .section {
+    padding: 58px 5%;
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .fleet-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 13px;
+  }
+
+  .vehicle-card > img {
+    height: 145px;
+  }
+
+  .vehicle-content {
+    padding: 13px;
+  }
+
+  .vehicle-content h3 {
+    font-size: 15px;
+  }
+
+  .vehicle-price {
+    font-size: 16px;
+  }
+
+  .booking {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .booking-intro {
+    position: static;
+  }
+
+  .booking-intro h2 {
+    font-size: 31px;
+  }
+
+  .booking-form {
+    padding: 21px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .cta {
+    padding: 48px 5%;
+  }
+}
+
+/* RESPONSIF HP KECIL */
+
+@media (max-width: 360px) {
+  .fleet-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vehicle-card > img {
+    height: 190px;
+  }
+
+  .hero h1 {
+    font-size: 33px;
+  }
+
+  .hero-points {
+    flex-direction: column;
+  }
+}
+
+
+/* PETA RUTE PEMESANAN */
+.route-map-group { margin-top: 8px; }
+.map-help { color: var(--muted); font-size: 12px; margin: -2px 0 10px; }
+#routeMap {
+  width: 100%;
+  height: 340px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: 1;
+}
+.map-actions { display: flex; gap: 9px; margin-bottom: 10px; flex-wrap: wrap; }
+.map-point-button {
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: var(--navy);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.map-point-button.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+.route-status { margin-top: 9px; font-size: 12px; color: #166534; }
+.route-status.error { color: #b91c1c; }
+#distance[readonly] { background: #f5f7fb; color: var(--navy); font-weight: 700; }
+@media (max-width: 600px) {
+  #routeMap { height: 280px; }
+}
+
+
+/* Pembayaran QRIS di dalam form pemesanan */
+.booking-payment-box {
+    margin: 22px 0;
+    padding: 18px;
+    border: 1px solid #dce4ef;
+    border-radius: 12px;
+    background: #f8fafc;
+}
+.booking-payment-box h3 { margin: 0 0 8px; }
+.booking-payment-box > p { line-height: 1.6; }
+.booking-qris-image {
+    display: block;
+    width: min(240px, 100%);
+    max-height: 300px;
+    object-fit: contain;
+    margin: 14px auto;
+    padding: 8px;
+    background: #fff;
+    border: 1px solid #dce4ef;
+    border-radius: 9px;
+}
+.booking-payment-note { font-size: 13px; color: #475569; text-align: center; }
+.booking-payment-box input[type="file"] {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 9px;
+}
+.payment-confirmation {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 16px;
+    font-size: 14px;
+    line-height: 1.55;
+    cursor: pointer;
+}
+.payment-confirmation input { flex: 0 0 auto; margin-top: 3px; }

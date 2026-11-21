@@ -1,0 +1,423 @@
+<?php
+session_start();
+
+// Lindungi halaman agar hanya bisa dibuka setelah login
+if (!isset($_SESSION["user_id"])) {
+    header("Location: auth/Form%20login.php");
+    exit;
+}
+
+// Siapkan pesan login yang hanya muncul satu kali
+$pesanLogin = "";
+
+if (
+    isset($_SESSION["login_berhasil"]) &&
+    $_SESSION["login_berhasil"] === true
+) {
+    $pesanLogin = "Login berhasil! Selamat datang, " .
+        htmlspecialchars(
+            $_SESSION["username"],
+            ENT_QUOTES,
+            "UTF-8"
+        ) . "!";
+
+    unset($_SESSION["login_berhasil"]);
+}
+
+// Siapkan nama pengguna untuk ditampilkan
+$username = htmlspecialchars(
+    $_SESSION["username"] ?? "Pengguna",
+    ENT_QUOTES,
+    "UTF-8"
+);
+?>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jasa angkut barang yang praktis, aman, dan terpercaya.">
+
+    <title>Angkutin - Jasa Angkut Barang</title>
+
+    <link rel="stylesheet" href="assets/css/Halaman_Utama.css">
+
+    <!-- CSS tambahan khusus tombol akun dan logout -->
+    <style>
+        .nav-account {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-user {
+            font-size: 14px;
+            color: inherit;
+        }
+
+        .nav-logout {
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 8px;
+            background: #dc2626;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s ease;
+        }
+
+        .nav-logout:hover {
+            background: #b91c1c;
+        }
+
+        @media (max-width: 768px) {
+            .nav-account {
+                justify-content: center;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<?php if ($pesanLogin !== ""): ?>
+    <div id="loginSuccessMessage"
+         style="background: #d1fae5; color: #065f46; padding: 12px; text-align: center; transition: opacity 0.5s ease;">
+        <?= $pesanLogin ?>
+    </div>
+
+    <script>
+        setTimeout(function () {
+            const pesan = document.getElementById("loginSuccessMessage");
+
+            if (pesan) {
+                pesan.style.opacity = "0";
+
+                setTimeout(function () {
+                    pesan.remove();
+                }, 500);
+            }
+        }, 2500);
+    </script>
+<?php endif; ?>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <a href="#beranda" class="brand">
+            <img src="Gambar/Logo_Usaha.png" alt="Logo Angkutin" class="logo">
+            <span>Angkut<span class="accent">in.</span></span>
+        </a>
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Buka menu"
+            aria-expanded="false"
+        >☰</button>
+
+        <nav id="navMenu">
+            <a href="#beranda">Beranda</a>
+            <a href="#layanan">Layanan</a>
+            <a href="#armada">Pilihan Mobil</a>
+            <a href="#pemesanan" class="nav-button">Pesan Sekarang</a>
+
+            <!-- Informasi pengguna dan tombol logout -->
+            <div class="nav-account">
+                <span class="nav-user">
+                    Halo, <?= $username ?>
+                </span>
+
+                <a
+                    href="auth/logout.php"
+                    class="nav-logout"
+                    onclick="return confirm('Yakin ingin logout dari Angkutin?');"
+                >
+                    Logout
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- BAGIAN BERANDA -->
+        <section class="hero" id="beranda">
+            <div class="hero-content">
+                <span class="eyebrow">ANGKUTAN BARANG TERPERCAYA</span>
+
+                <h1>
+                    Pindahan dan Angkut Barang Jadi
+                    <span class="accent">Lebih Mudah.</span>
+                </h1>
+
+                <p>
+                    Butuh angkut barang, pindahan rumah, atau kirim barang usaha?
+                    Kami siap membantu dengan armada yang sesuai kebutuhanmu.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#pemesanan" class="btn btn-primary">
+                        Pesan Sekarang →
+                    </a>
+
+                    <a href="#armada" class="btn btn-outline">
+                        Lihat Armada
+                    </a>
+                </div>
+
+                <div class="hero-points">
+                    <span>✓ Pilihan armada lengkap</span>
+                    <span>✓ Harga transparan</span>
+                    <span>✓ Pemesanan mudah</span>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <img
+                    src="Gambar/foto_truck.jpeg"
+                    alt="Truk jasa angkut barang"
+                >
+
+                <div class="image-label">
+                    <span class="label-icon">🚚</span>
+
+                    <div>
+                        <strong>Siap Antar Barangmu</strong>
+                        <small>Praktis, aman, dan nyaman</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BAGIAN LAYANAN -->
+        <section class="services section" id="layanan">
+            <div class="section-heading">
+                <span class="eyebrow">LAYANAN KAMI</span>
+                <h2>Satu layanan untuk berbagai kebutuhan</h2>
+                <p>
+                    Dari barang kecil hingga pindahan rumah, pilih layanan yang tepat.
+                </p>
+            </div>
+
+            <div class="service-grid">
+                <article class="service-card">
+                    <div class="service-icon">📦</div>
+                    <h3>Angkut Barang</h3>
+                    <p>
+                        Untuk perabot, perlengkapan usaha, dan barang lainnya.
+                    </p>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-icon">🏠</div>
+                    <h3>Pindahan Rumah</h3>
+                    <p>
+                        Bantu pindahkan barang rumah dengan armada yang sesuai.
+                    </p>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-icon">🏢</div>
+                    <h3>Angkut Usaha</h3>
+                    <p>
+                        Pengiriman stok barang dan perlengkapan usaha.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- BAGIAN PILIHAN ARMADA -->
+        <section class="fleet section" id="armada">
+            <div class="section-heading">
+                <span class="eyebrow">PILIHAN ARMADA</span>
+                <h2>Temukan mobil yang kamu butuhkan</h2>
+                <p>
+                    Empat pilihan kendaraan dengan kapasitas dan harga dasar berbeda.
+                </p>
+            </div>
+
+            <div class="fleet-grid" id="fleetGrid"></div>
+        </section>
+
+        <!-- BAGIAN PEMESANAN -->
+        <section class="booking section" id="pemesanan">
+            <div class="booking-intro">
+                <span class="eyebrow">PEMESANAN ONLINE</span>
+
+                <h2>Siap mengangkut barangmu?</h2>
+
+                <p>
+                    Isi detail pemesanan. Pilih armada dan periksa perkiraan
+                    biayanya sebelum melanjutkan.
+                </p>
+
+                <div class="booking-note">
+                    <span>✓</span> Pilih kendaraan sesuai kebutuhan
+                </div>
+
+                <div class="booking-note">
+                    <span>✓</span> Perkiraan biaya ditampilkan otomatis
+                </div>
+
+                <div class="booking-note">
+                    <span>✓</span> Konfirmasi pesanan 
+                </div>
+            </div>
+
+            <form id="bookingForm" class="booking-form">
+                <h3>Formulir Pemesanan</h3>
+
+                <div class="form-group">
+                    <label for="customerName">Nama lengkap</label>
+
+                    <input
+                        type="text"
+                        id="customerName"
+                        placeholder="Masukkan nama kamu"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="customerPhone">Nomor WhatsApp</label>
+
+                    <input
+                        type="tel"
+                        id="customerPhone"
+                        placeholder="Contoh: 081234567890"
+                        pattern="[0-9+() -]{9,20}"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="pickup">Alamat penjemputan</label>
+
+                    <textarea
+                        id="pickup"
+                        rows="2"
+                        placeholder="Alamat lengkap lokasi barang"
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="destination">Alamat tujuan</label>
+
+                    <textarea
+                        id="destination"
+                        rows="2"
+                        placeholder="Alamat pengantaran barang"
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="bookingDate">Tanggal angkut</label>
+
+                        <input
+                            type="date"
+                            id="bookingDate"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="distance">Jarak (km)</label>
+
+                        <input
+                            type="number"
+                            id="distance"
+                            min="1"
+                            max="10000"
+                            value="10"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="vehicle">Pilih kendaraan</label>
+
+                    <select id="vehicle" required></select>
+                </div>
+
+                <div class="form-group">
+                    <label for="notes">Catatan barang (opsional)</label>
+
+                    <textarea
+                        id="notes"
+                        rows="2"
+                        placeholder="Contoh: lemari, meja, 5 kardus"
+                    ></textarea>
+                </div>
+
+                <div class="price-summary">
+                    <span>Estimasi biaya</span>
+                    <strong id="estimatedPrice">Rp150.000</strong>
+                    <small id="priceDetail">
+                        Harga dasar dan jarak perjalanan
+                    </small>
+                </div>
+
+
+            <button
+                type="submit"
+                class="btn btn-primary submit-btn"
+            >
+                Pesan Sekarang →
+            </button>
+
+
+                <p class="form-disclaimer">
+                    Estimasi belum termasuk biaya tambahan seperti tol,
+                    parkir, atau tenaga angkut jika diperlukan.
+                </p>
+            </form>
+        </section>
+
+        <!-- BAGIAN AJAKAN PEMESANAN -->
+        <section class="cta">
+            <h2>Barang siap diangkut?</h2>
+
+            <p>
+                Pilih armada dan rencanakan pengirimanmu sekarang.
+            </p>
+
+            <a href="#pemesanan" class="btn btn-light">
+                Mulai Pemesanan →
+            </a>
+        </section>
+
+    </main>
+
+    <!-- BAGIAN FOOTER -->
+    <footer class="footer">
+        <a href="#beranda" class="brand footer-brand">
+            <img
+                src="Gambar/Logo_Usaha.png"
+                alt="Logo Angkutin"
+                class="logo"
+            >
+
+            <span>Angkut<span class="accent">in.</span></span>
+        </a>
+
+        <p>
+            Solusi angkut barang yang praktis untuk kebutuhanmu.
+        </p>
+
+        <small>
+            © <span id="year"></span> Angkutin.
+            Sesuaikan nama dan informasi bisnis sebelum digunakan.
+        </small>
+    </footer>
+
+    <script src="assets/js/Halaman_Utama.js"></script>
+
+</body>
+</html>

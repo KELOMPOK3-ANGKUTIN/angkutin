@@ -1,0 +1,24 @@
+FITUR PEMBAYARAN QRIS ANGKUTIN
+
+PENTING: sebelum menjalankan website, lakukan migrasi database satu kali.
+
+1. Buka XAMPP, jalankan Apache dan MySQL.
+2. Buka http://localhost/phpmyadmin
+3. Pilih database angkutin_db.
+4. Buka tab SQL.
+5. Buka file database_qris.sql, salin seluruh isinya, tempel ke tab SQL, lalu klik Go.
+   Migrasi ini hanya menambahkan kolom bukti_pembayaran dan status_pembayaran.
+   Jangan menghapus atau mengimpor ulang database lama.
+
+File QRIS resmi yang kamu kirim disimpan sebagai:
+Gambar/qris_angkutin.png
+
+Alur:
+- Pelanggan membuat pesanan seperti biasa.
+- Buka menu Pesanan Saya.
+- Pindai QRIS, bayar sesuai nominal pesanan, lalu unggah foto/screenshot bukti.
+- File disimpan di uploads/bukti_pembayaran dan dicatat pada database.
+- Admin melihat foto bukti di kolom Status pada dashboard admin.
+
+Format upload: JPG, PNG, WEBP; maksimal 5 MB.
+Status bukti saat ini hanya menandai apakah file sudah diunggah, bukan verifikasi bahwa pembayaran benar-benar sudah diterima. Admin tetap perlu mencocokkan transaksi melalui aplikasi/akun penerima QRIS.
